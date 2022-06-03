@@ -4,7 +4,7 @@ import Mobile from './Mobile';
 const FeaturedProducts = () => {
     const [featuredProducts, setFeaturedProducts] = useState([])
     useEffect(() => {
-        fetch('data.json')
+        fetch('https://morning-sands-87879.herokuapp.com/mobiles')
             .then(res => res.json())
             .then(data => setFeaturedProducts(data))
     }, [])
