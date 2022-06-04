@@ -6,7 +6,9 @@ import SignUp from './components/Shared/SignUp';
 import Login from './components/Shared/Login';
 import Footer from './components/Shared/Footer';
 
+
 function App() {
+
   return (
     <div className='px-12'>
       <Navbar></Navbar>
