@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DownloadApp = () => {
     return (
-
-        <div class="p-4 w-full text-center bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-4 w-full text-center bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 lg:my-10 my-5">
             <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Download Our App</h5>
             <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Stay up to date and move work forward with Flowbite on iOS &amp; Android. Download the app today.</p>
             <div class="justify-center items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">

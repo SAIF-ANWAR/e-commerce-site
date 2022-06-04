@@ -4,6 +4,7 @@ import Navbar from './components/Shared/Navbar';
 import Home from './components/Home/Home';
 import SignUp from './components/Shared/SignUp';
 import Login from './components/Shared/Login';
+import Footer from './components/Shared/Footer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/signUp' element={<SignUp></SignUp>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

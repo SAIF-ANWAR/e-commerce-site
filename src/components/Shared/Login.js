@@ -1,8 +1,8 @@
 import React from 'react';
+import SocialLogin from './SocialLogin';
 
 const Login = () => {
     return (
-
         <div class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
             <form class="space-y-6" action="#">
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
@@ -23,11 +23,13 @@ const Login = () => {
                     </div>
                     <a href="#" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
                 </div>
-                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Log in</button>
+
                 <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
                     Not registered? <a href="/signUp" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
                 </div>
             </form>
+            <SocialLogin></SocialLogin>
         </div>
 
     );
