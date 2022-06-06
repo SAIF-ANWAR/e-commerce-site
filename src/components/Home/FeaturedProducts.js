@@ -35,15 +35,16 @@ const FeaturedProducts = () => {
                 }
             </div>
             <div className='flex justify-end mr-1 my-3'>
-                <button class="btn btn-outline btn-info btn-sm">See All</button>
+                <button className="btn btn-outline btn-info btn-sm">See All</button>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-x-5 gap-y-10 mt-10'>
                 {
                     laptops.slice(0, 4).map(laptop => <Laptop key={laptop._id} laptop={laptop}></Laptop>)
                 }
             </div>
+
             <div className='flex justify-end mr-1 my-3'>
-                <button class="btn btn-outline btn-info btn-sm">See All</button>
+                <button className="btn btn-outline btn-info btn-sm">See All</button>
             </div>
         </div>
 
