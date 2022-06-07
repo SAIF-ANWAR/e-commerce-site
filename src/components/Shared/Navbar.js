@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../images/logo/company-logo.png'
 
 const Navbar = () => {
     const menuBar = <>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/">Products</Link></li>
-        <li><Link to="/">Dashboard</Link></li>
+        <li><Link to="/allProducts">Products</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/">Contact</Link></li>
         <li><Link to="/about">About</Link></li>
     </>
@@ -20,7 +21,7 @@ const Navbar = () => {
                         {menuBar}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl"> <img className='w-16' src={logo} alt="" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
