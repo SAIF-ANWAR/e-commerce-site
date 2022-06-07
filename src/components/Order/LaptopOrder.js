@@ -13,6 +13,9 @@ const LaptopOrder = () => {
         return <Loading></Loading>
     }
     const onSubmit = data => {
+        const orderQuantity = data?.quantity
+        const originQuantity = laptop?.quantity
+        const quantity = originQuantity - orderQuantity
         const url = 'https://morning-sands-87879.herokuapp.com/laptopOrders'
         fetch(url, {
             method: "POST",
@@ -23,8 +26,22 @@ const LaptopOrder = () => {
         })
             .then(res => res.json())
             .then(data => {
-                refetch()
-                console.log(data)
+                if (data.acknowledged === true) {
+                    window.alert("successfull")
+                }
+                const url = `https://morning-sands-87879.herokuapp.com/laptops/${laptop._id}`
+                fetch(url, {
+                    method: "PUT",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ quantity })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        refetch()
+                    })
             })
         console.log(data)
     }
@@ -32,7 +49,7 @@ const LaptopOrder = () => {
 
         <div className='mb-10'>
             <h1 className="text-2xl font-medium text-center text-gray-900 dark:text-white mt-10 mb-10">Please fill up this form to place the order</h1>
-            <form className='w-4/5 mx-auto' onSubmit={handleSubmit(onSubmit)}>
+            <form className='w-4/6 mx-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div class="grid xl:grid-cols-2 xl:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
                         <input type="text" name="floating_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-md font-bold text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value={laptop?.title} placeholder=" " {...register("productName", { required: true })} />

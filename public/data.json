@@ -6,7 +6,8 @@
         "display": "6.43",
         "camera": "64MP",
         "memory": "8GB",
-        "price": 380
+        "price": 380,
+        "quantity": 100
     },
     {
         "name": "Sony Xperia 10 IV",
@@ -15,7 +16,8 @@
         "display": "6.00",
         "camera": "12MP",
         "memory": "6GB",
-        "price": 500
+        "price": 500,
+        "quantity": 100
     },
     {
         "name": "Realme V23",
@@ -24,7 +26,8 @@
         "display": "6.58",
         "camera": "48MP",
         "memory": "4GB",
-        "price": 250
+        "price": 250,
+        "quantity": 100
     },
     {
         "name": "Honor 70",
@@ -33,7 +36,8 @@
         "display": "6.67",
         "camera": "54MP",
         "memory": "8GB",
-        "price": 400
+        "price": 400,
+        "quantity": 100
     },
     {
         "name": "Xiaomi Redmi 10",
@@ -42,7 +46,8 @@
         "display": "6.7",
         "camera": "50MP",
         "memory": "8GB",
-        "price": 200
+        "price": 200,
+        "quantity": 100
     },
     {
         "name": "Samsung Galaxy M13",
@@ -51,7 +56,8 @@
         "display": "6.6",
         "camera": "50MP",
         "memory": "4GB",
-        "price": 250
+        "price": 250,
+        "quantity": 100
     },
     {
         "name": "Oppo K10",
@@ -60,7 +66,8 @@
         "display": "6.62",
         "camera": "50MP",
         "memory": "8GB",
-        "price": 450
+        "price": 450,
+        "quantity": 100
     },
     {
         "name": "Vivo X80 Pro",
@@ -69,7 +76,8 @@
         "display": "6.78",
         "camera": "50MP",
         "memory": "8GB",
-        "price": 700
+        "price": 700,
+        "quantity": 100
     },
     {
         "name": "Samsung Galaxy Xcover 6 Pro",
@@ -78,7 +86,8 @@
         "display": "6.6",
         "camera": "50MP",
         "memory": "8GB",
-        "price": 400
+        "price": 400,
+        "quantity": 100
     },
     {
         "name": "Motorola Moto G62",
@@ -87,6 +96,7 @@
         "display": "6.5",
         "camera": "50MP",
         "memory": "4GB",
-        "price": 300
+        "price": 300,
+        "quantity": 100
     }
 ]

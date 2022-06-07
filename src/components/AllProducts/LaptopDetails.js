@@ -24,6 +24,7 @@ const LaptopDetails = () => {
                 <p>Memory {laptop.description.memory}</p>
                 <p>Storage {laptop.description.storage}</p>
                 <p>Price $ {laptop.price}</p>
+                <p> {laptop?.quantity === 0 ? "Out of Stock" : <p className='text-green-400'>In Stock</p>} </p>
                 <div class="card-actions justify-center mt-2">
                     <button onClick={() => handleBuyNow(laptop._id)} class="btn text-lg text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 w-full">Buy Now</button>
                 </div>

@@ -25,6 +25,12 @@ const AllProducts = () => {
     const handleLaptopDetails = id => {
         navigate(`/laptopDetails/${id}`)
     }
+    const handleBuyNow = (id) => {
+        navigate(`/phoneOrder/${id}`)
+    }
+    const handleBuyNowLaptop = (id) => {
+        navigate(`/laptopOrder/${id}`)
+    }
     return (
         <div>
             <h1>All Products</h1>
@@ -43,7 +49,7 @@ const AllProducts = () => {
                             <span className="text-3xl font-bold text-gray-900 dark:text-white">$ {mobile.price}</span>
                             <div class="card-actions justify-end mt-2">
                                 <button onClick={() => handleMobileDetails(mobile._id)} class="badge badge-outline text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mt-1 mr-2 mb-2">Details</button>
-                                <button class="badge badge-outline text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mt-1 mr-2 mb-2">Buy Now</button>
+                                <button onClick={() => handleBuyNow(mobile._id)} class="badge badge-outline text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mt-1 mr-2 mb-2">Buy Now</button>
                             </div>
                         </div>
                     </div>)
@@ -62,7 +68,7 @@ const AllProducts = () => {
                             <span className="text-3xl font-bold text-gray-900 dark:text-white">$ {laptop.price}</span>
                             <div class="card-actions justify-end mt-2">
                                 <button onClick={() => handleLaptopDetails(laptop._id)} class="badge badge-outline text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mt-1 mr-2 mb-2">Details</button>
-                                <Link to="/" class="badge badge-outline text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mt-1 mr-2 mb-2">Buy Now</Link>
+                                <button onClick={() => handleBuyNowLaptop(laptop._id)} class="badge badge-outline text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-4 text-center mt-1 mr-2 mb-2">Buy Now</button>
                             </div>
                         </div>
                     </div>)
