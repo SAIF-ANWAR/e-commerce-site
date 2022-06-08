@@ -1,33 +1,54 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from './Loading';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate()
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+    if (loading || gLoading) {
+        return <Loading></Loading>
+    }
+    if (error || gError) {
+
+        window.alert(`${error.message || gError.message}`)
+    }
+    if (user || gUser) {
+        navigate(from, { replace: true });
+    }
+
+    const onSubmit = data => {
+        signInWithEmailAndPassword(data.email, data.password)
+
+    };
     return (
         <div>
             <h5 className="text-2xl font-medium text-center text-gray-900 dark:text-white mt-10">Sign in to our platform</h5>
             <div className="card card-side bg-base-100 shadow-lg w-2/3 mx-auto p-10 mb-10 flex items-center justify-center">
                 <div className='w-2/5 mr-6'>
-                    <form className="space-y-6" action="#">
-                        <div>
-                            <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required="" />
-                        </div>
-                        <div>
-                            <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required="" />
-                        </div>
-                        <div className="flex items-start">
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                    <input id="remember" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required="" />
-                                </div>
-                                <label for="remember" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                            </div>
-                            <Link to="#" className="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</Link>
-                        </div>
-                        <button type="button" className=" text-white bg-gradient-to-r from-cyan-500 to-blue-500  hover:bg-gradient-to-bl focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Log in</button>
-
+                    <form className='min-w-full text-center' onSubmit={handleSubmit(onSubmit)}>
+                        <input type="email" placeholder="Type Email" className="input input-bordered w-full max-w-xs my-2" {...register("email", { required: true })} />
+                        <label className="label">
+                            <p className='text-red-500'>{errors.email?.type === 'required' && "Email is required"}</p>
+                        </label>
+                        <input type="password" placeholder="Type password" className="input input-bordered w-full max-w-xs" {...register("password", { required: true })} />
+                        <label className="label">
+                            <p className='text-red-500'>{errors.password?.type === 'required' && "Password is required"}</p>
+                        </label>
+                        <input className="btn btn-outline btn-success w-full max-w-xs my-2" type="submit" value="Log In" />
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                             Not registered? <Link to="/signUp" className="text-blue-700 hover:underline dark:text-blue-500">Create account</Link>
                         </div>

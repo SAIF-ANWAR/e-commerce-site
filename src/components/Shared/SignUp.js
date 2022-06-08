@@ -3,18 +3,20 @@ import { useForm } from "react-hook-form";
 import SocialLogin from './SocialLogin';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { useUpdateProfile } from 'react-firebase-hooks/auth';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const onSubmit = data => {
-        createUserWithEmailAndPassword(data?.email, data?.password)
-        console.log(data)
+    const onSubmit = async (data) => {
+        await createUserWithEmailAndPassword(data?.email, data?.password)
+        await updateProfile({ displayName: data?.name });
     };
 
     return (

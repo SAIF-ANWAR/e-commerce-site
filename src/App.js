@@ -18,6 +18,7 @@ import MyProfile from './components/Dashboard/MyProfile/MyProfile';
 import ManageOrders from './components/Dashboard/ManageOrders/ManageOrders';
 import MakeAdmin from './components/Dashboard/Admin/MakeAdmin';
 import ManageInventory from './components/Dashboard/ManageInventory/ManageInventory';
+import RequireAuth from './components/Shared/RequireAuth/RequireAuth';
 
 
 
@@ -34,7 +35,11 @@ function App() {
         <Route path='/laptopDetails/:id' element={<LaptopDetails></LaptopDetails>}></Route>
         <Route path='/phoneOrder/:id' element={<PhoneOrder></PhoneOrder>}></Route>
         <Route path='/laptopOrder/:id' element={<LaptopOrder></LaptopOrder>}></Route>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+        <Route path='/dashboard' element={
+          <RequireAuth>
+            <Dashboard></Dashboard>
+          </RequireAuth>
+        }>
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='/dashboard/myProfile' element={<MyProfile></MyProfile>}></Route>
           <Route path='/dashboard/AddReview' element={<AddReview></AddReview>}></Route>
