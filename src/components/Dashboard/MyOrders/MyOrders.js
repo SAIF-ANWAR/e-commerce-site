@@ -3,15 +3,28 @@ import { useQuery } from 'react-query';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const MyOrders = () => {
     const [user, loading, error] = useAuthState(auth);
-    const email = user?.email
+    const [phoneOrders, setphoneOrders] = useState([])
+    useEffect(() => {
+        fetch(`https://morning-sands-87879.herokuapp.com/phoneOrders/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setphoneOrders(data)
+            })
 
-    const { data: phoneOrders, isLoading, refetch } = useQuery(['available', email], () => fetch(`http://localhost:5000/phoneOrders/${email}`).then(res => res.json()))
-    if (isLoading) {
+    }, [user?.email])
+    if (loading) {
         return <Loading></Loading>
     }
+    // const email = user?.email
+    // const { data: phoneOrders, isLoading, refetch } = useQuery(['available', email], () => fetch(`https://morning-sands-87879.herokuapp.com/phoneOrders/${email}`).then(res => res.json()))
+    // if (isLoading || loading) {
+    //     return <Loading></Loading>
+    // }
 
 
     return (
@@ -19,7 +32,7 @@ const MyOrders = () => {
             <h1 className='my-3'>My Orders</h1>
             <div className=' grid grid-cols-1 lg:grid-cols-2'>
                 {
-                    phoneOrders.map(order => <>
+                    phoneOrders?.map(order => <>
                         <div class="card card-compact w-96 bg-base-100 shadow-xl">
                             <figure><img className='max-h-48 w-3/4' src={order?.img} alt="Shoes" /></figure>
                             <div class="card-body">

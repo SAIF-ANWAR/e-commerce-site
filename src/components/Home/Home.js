@@ -5,6 +5,7 @@ import FeaturedCategory from './Category/FeaturedCategory';
 import DownloadApp from './DownloadApp';
 import ExtraSection from './ExtraSection';
 import FeaturedProducts from './FeaturedProducts';
+import Reviews from './Reviews/Reviews';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <FeaturedProducts></FeaturedProducts>
             <FeaturedCategory></FeaturedCategory>
             <ExtraSection></ExtraSection>
+            <Reviews></Reviews>
             <BusinessOverview></BusinessOverview>
             <DownloadApp></DownloadApp>
         </div>
