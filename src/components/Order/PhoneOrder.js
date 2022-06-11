@@ -1,10 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading';
 
 const PhoneOrder = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { data: mobile, isLoading, refetch } = useQuery(['available', id], () => fetch(`https://morning-sands-87879.herokuapp.com/mobiles/${id}`).then(res => res.json()))
@@ -12,7 +13,11 @@ const PhoneOrder = () => {
         return <Loading></Loading>
     }
     const onSubmit = data => {
+        data.img = mobile?.img
         const orderQuantity = data?.quantity
+        const totalCost = orderQuantity * mobile?.price
+        data.totalCost = totalCost
+
         const originQuantity = mobile?.quantity
         const quantity = originQuantity - orderQuantity
         const url = 'https://morning-sands-87879.herokuapp.com/phoneOrders'
@@ -38,6 +43,7 @@ const PhoneOrder = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
+                        navigate('/dashboard')
                         console.log(data)
                         refetch()
                     })

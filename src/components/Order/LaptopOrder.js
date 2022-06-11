@@ -13,10 +13,14 @@ const LaptopOrder = () => {
         return <Loading></Loading>
     }
     const onSubmit = data => {
+        data.img = laptop?.img
         const orderQuantity = data?.quantity
+        const totalCost = orderQuantity * laptop?.price
+        data.totalCost = totalCost
+
         const originQuantity = laptop?.quantity
         const quantity = originQuantity - orderQuantity
-        const url = 'https://morning-sands-87879.herokuapp.com/laptopOrders'
+        const url = 'https://morning-sands-87879.herokuapp.com/phoneOrders'
         fetch(url, {
             method: "POST",
             headers: {
