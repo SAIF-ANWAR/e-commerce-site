@@ -4,8 +4,11 @@ import SocialLogin from './SocialLogin';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useUpdateProfile } from 'react-firebase-hooks/auth';
+import Loading from './Loading';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [updateProfile, updating] = useUpdateProfile(auth);
     const [
@@ -14,9 +17,35 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const onSubmit = async (data) => {
-        await createUserWithEmailAndPassword(data?.email, data?.password)
-        await updateProfile({ displayName: data?.name });
+    if (user) {
+        navigate('/dashboard')
+    }
+    if (loading || updating) {
+        return <Loading></Loading>
+    }
+    const onSubmit = async (user) => {
+        await createUserWithEmailAndPassword(user?.email, user?.password)
+        await updateProfile({ displayName: user?.name });
+        if (updating) {
+            return <Loading></Loading>
+        }
+        const data = {
+            userName: user?.name,
+            userEmail: user?.email,
+        }
+        fetch(`https://morning-sands-87879.herokuapp.com/users/${user?.email}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    window.alert("Successfully created account")
+                }
+            })
     };
 
     return (

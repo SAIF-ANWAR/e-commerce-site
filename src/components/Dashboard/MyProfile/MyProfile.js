@@ -24,10 +24,15 @@ const MyProfile = () => {
             .then(res => res.json())
             .then(data => {
                 setProfile(!profile)
-                navigate('/dashboard/myProfile')
+                if (data.acknowledged === true) {
+                    window.alert("Profile updated")
+                }
                 console.log(data)
             })
         console.log(data)
+    }
+    if (loading) {
+        return <Loading></Loading>
     }
 
     return (

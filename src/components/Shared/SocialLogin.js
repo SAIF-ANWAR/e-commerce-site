@@ -1,29 +1,53 @@
 import React from 'react';
 import auth from '../../firebase.init';
-import { useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Loading from './Loading';
+import { useEffect } from 'react';
 
 
 const SocialLogin = () => {
     const location = useLocation()
     const navigate = useNavigate()
+    const [user, authLoading] = useAuthState(auth)
     const [signInWithGoogle, gUser, loading, error] = useSignInWithGoogle(auth);
-    const [signInWithGithub, gitUser, gitLoading, gitError] = useSignInWithGoogle(auth);
+    const [signInWithGithub, gitUser, gitLoading, gitError] = useSignInWithGithub(auth);
     const [signInWithFacebook, facebookUser, facebookLoading, facebookError] = useSignInWithFacebook(auth);
     let from = location.state?.from?.pathname || "/";
 
+    const handleGoogleLog = () => {
+        signInWithGoogle()
 
-    if (loading) {
+    }
+    if (loading || authLoading) {
         return <Loading></Loading>
     }
     if (gUser) {
         navigate(from, { replace: true });
-        console.log(gUser)
+
+        const data = {
+            userName: gUser?.user?.displayName,
+            userEmail: gUser?.user?.email,
+        }
+
+        fetch(`https://morning-sands-87879.herokuapp.com/users/${gUser?.user?.email}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    window.alert("Successfully created account")
+                }
+
+            })
+
     }
-    const handleGoogleLog = () => {
-        signInWithGoogle()
-    }
+
+
     return (
         <div className='p-3'>
             <div className='flex flex-col items-center'>

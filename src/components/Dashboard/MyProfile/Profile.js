@@ -5,9 +5,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 const Profile = () => {
-    const [user, loading, error] = useAuthState(auth);
-    const { data: users, isLoading, refetch } = useQuery(['available', user?.email], () => fetch(`https://morning-sands-87879.herokuapp.com/users/${user?.email}`).then(res => res.json()))
-    if (isLoading) {
+    const [user, loading] = useAuthState(auth);
+    const { data: users, isLoading } = useQuery('user', () => fetch(`https://morning-sands-87879.herokuapp.com/users/${user?.email}`).then(res => res.json()))
+    if (isLoading || loading) {
         return <Loading></Loading>
     }
     return (
