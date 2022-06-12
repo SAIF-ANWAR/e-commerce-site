@@ -33,7 +33,7 @@ const MyOrders = () => {
             <div className=' grid grid-cols-1 lg:grid-cols-2'>
                 {
                     phoneOrders?.map(order => <>
-                        <div class="card card-compact w-96 bg-base-100 shadow-xl">
+                        <div class="card card-compact  bg-base-100 shadow-xl">
                             <figure><img className='max-h-48 w-3/4' src={order?.img} alt="Shoes" /></figure>
                             <div class="card-body">
                                 <h2 class="card-title"></h2>

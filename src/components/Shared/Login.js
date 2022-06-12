@@ -17,7 +17,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
     if (loading || gLoading) {
         return <Loading></Loading>
@@ -32,7 +32,7 @@ const Login = () => {
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
-       
+
 
     };
     return (

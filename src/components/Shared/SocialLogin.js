@@ -39,9 +39,7 @@ const SocialLogin = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
-                    window.alert("Successfully created account")
-                }
+                console.log(data)
 
             })
 

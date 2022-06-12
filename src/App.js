@@ -19,6 +19,7 @@ import ManageOrders from './components/Dashboard/ManageOrders/ManageOrders';
 import MakeAdmin from './components/Dashboard/Admin/MakeAdmin';
 import ManageInventory from './components/Dashboard/ManageInventory/ManageInventory';
 import RequireAuth from './components/Shared/RequireAuth/RequireAuth';
+import RequireAdmin from './components/Shared/RequireAdmin/RequireAdmin';
 
 
 
@@ -43,9 +44,21 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='/dashboard/myProfile' element={<MyProfile></MyProfile>}></Route>
           <Route path='/dashboard/AddReview' element={<AddReview></AddReview>}></Route>
-          <Route path='/dashboard/manageOrders' element={<ManageOrders></ManageOrders>}></Route>
-          <Route path='/dashboard/manageInventory' element={<ManageInventory></ManageInventory>}></Route>
-          <Route path='/dashboard/admin' element={<MakeAdmin></MakeAdmin>}></Route>
+          <Route path='/dashboard/manageOrders' element={
+            <RequireAdmin>
+              <ManageOrders></ManageOrders>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/manageInventory' element={
+            <RequireAdmin>
+              <ManageInventory></ManageInventory>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/admin' element={
+            <RequireAdmin>
+              <MakeAdmin></MakeAdmin>
+            </RequireAdmin>
+          }></Route>
         </Route>
         <Route path='/signUp' element={<SignUp></SignUp>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
