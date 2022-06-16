@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 const AddLaptopItem = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
-        const url = "http://localhost:5000/laptops"
+        const url = "https://morning-sands-87879.herokuapp.com/laptops"
         fetch(url, {
             method: "POST",
             headers: {
