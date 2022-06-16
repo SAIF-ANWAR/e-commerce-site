@@ -20,6 +20,8 @@ import MakeAdmin from './components/Dashboard/Admin/MakeAdmin';
 import ManageInventory from './components/Dashboard/ManageInventory/ManageInventory';
 import RequireAuth from './components/Shared/RequireAuth/RequireAuth';
 import RequireAdmin from './components/Shared/RequireAdmin/RequireAdmin';
+import AddItem from './components/Dashboard/AddItem/AddItem';
+import AddLaptopItem from './components/Dashboard/AddItem/AddLaptopItem';
 
 
 
@@ -52,6 +54,16 @@ function App() {
           <Route path='/dashboard/manageInventory' element={
             <RequireAdmin>
               <ManageInventory></ManageInventory>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/addMobileItem' element={
+            <RequireAdmin>
+              <AddItem></AddItem>
+            </RequireAdmin>
+          }></Route>
+          <Route path='/dashboard/addLaptopItem' element={
+            <RequireAdmin>
+              <AddLaptopItem></AddLaptopItem>
             </RequireAdmin>
           }></Route>
           <Route path='/dashboard/admin' element={

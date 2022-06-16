@@ -22,7 +22,6 @@ const ManageInventory = () => {
 
     return (
         <div>
-            <h1>Manage Inventory</h1>
             <div className=' grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-3 mt-5'>
                 {
                     mobiles?.map(mobile => <Inventory key={mobile._id} mobile={mobile} refetch={refetch} setPhone={setPhone}></Inventory>)
