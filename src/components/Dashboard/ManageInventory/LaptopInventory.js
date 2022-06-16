@@ -7,8 +7,17 @@ const LaptopInventory = ({ setLaptop }) => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    const handleDelete = () => {
-
+    const handleDelete = (id) => {
+        fetch(`https://morning-sands-87879.herokuapp.com/laptops/${id}`, {
+            method: "DELETE",
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    window.alert("Deleted from inventory")
+                }
+                refetch()
+            })
     }
 
     return (
@@ -27,7 +36,7 @@ const LaptopInventory = ({ setLaptop }) => {
                                 <li class="w-full  px-4 py-2 border-b border-gray-200 dark:border-gray-600">Quantity:  {laptop?.quantity === 0 ? "Out of Stock" : laptop?.quantity}</li>
                             </ul>
                             <div class="card-actions justify-end py-2">
-                                <button onClick={handleDelete} class="btn btn-sm">Delete</button>
+                                <button onClick={() => handleDelete(laptop?._id)} class="btn btn-sm">Delete</button>
                                 <label onClick={() => setLaptop(laptop)} for="laptop-modal" class="btn btn-sm modal-button">Restock</label>
                             </div>
                         </div>

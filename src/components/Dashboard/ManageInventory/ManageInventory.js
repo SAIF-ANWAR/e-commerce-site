@@ -15,19 +15,16 @@ const ManageInventory = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    const handleRestock = () => {
-        // const url = `https://morning-sands-87879.herokuapp.com/mobiles/${mobile.mobile._id}`
 
-        console.log(phone)
-        // refetch()
-    }
-    // console.log(laptop)
     return (
         <div>
             <div className=' grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-3 mt-5'>
                 {
                     mobiles?.map(mobile => <Inventory key={mobile._id} mobile={mobile} refetch={refetch} setPhone={setPhone}></Inventory>)
                 }
+            </div>
+            <div>
+                <h1 className='text-3xl font-bold text-center my-4'>All Laptops</h1>
             </div>
             <LaptopInventory setLaptop={setLaptop}></LaptopInventory>
             <RestockLaptopQuantity laptop={laptop}></RestockLaptopQuantity>
