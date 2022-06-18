@@ -1,5 +1,4 @@
 import React from 'react';
-import RestockQuantityMobile from './RestockQuantityMobile';
 
 const Inventory = ({ mobile, refetch, setPhone }) => {
     const { _id, name, img, processor, camera, display, memory, price, quantity } = mobile
@@ -16,23 +15,7 @@ const Inventory = ({ mobile, refetch, setPhone }) => {
                 console.log(data)
             })
     }
-    const handleRestock = () => {
-        setPhone(mobile)
-        // const url = `https://morning-sands-87879.herokuapp.com/mobiles/${_id}`
-        // fetch(url, {
-        //     method: "PUT",
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ quantity })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         navigate('/dashboard')
-        //         console.log(data)
-        //         refetch()
-        //     })
-    }
+
     return (
         <div class="card  card-compact bg-base-100 shadow-xl">
             <figure><img className='min-h-48 max-h-48' src={img} alt="Shoes" /></figure>
@@ -48,9 +31,7 @@ const Inventory = ({ mobile, refetch, setPhone }) => {
                 </ul>
                 <div class="card-actions justify-end py-2">
                     <button onClick={handleDelete} class="btn btn-sm">Delete</button>
-                    <label onClick={handleRestock} for="my-modal-6" class="btn btn-sm modal-button">Restock</label>
-                    {/* <label  class="btn modal-button">open modal</label> */}
-                    {/* <RestockQuantityMobile mobile={mobile} refetch={refetch}></RestockQuantityMobile> */}
+                    <label onClick={() => setPhone(mobile)} for="my-modal-6" class="btn btn-sm modal-button">Restock</label>
                 </div>
             </div>
         </div>

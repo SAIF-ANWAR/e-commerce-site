@@ -20,6 +20,10 @@ const LaptopOrder = () => {
 
         const originQuantity = laptop?.quantity
         const quantity = originQuantity - orderQuantity
+
+        const status = "Pending"
+        data.status = status
+
         const url = 'https://morning-sands-87879.herokuapp.com/phoneOrders'
         fetch(url, {
             method: "POST",
@@ -49,6 +53,7 @@ const LaptopOrder = () => {
             })
         console.log(data)
     }
+
     return (
 
         <div className='mb-10'>

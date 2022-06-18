@@ -1,6 +1,7 @@
 import React from 'react';
 
-const RestockQuantityMobile = (phone, refetch) => {
+const RestockQuantityMobile = (phone) => {
+    const name = phone?.phone?.name
     const handleRestock = (e) => {
         e.preventDefault()
         const earlierQuantity = phone.phone.quantity
@@ -32,7 +33,7 @@ const RestockQuantityMobile = (phone, refetch) => {
                 <div class="modal modal-bottom sm:modal-middle">
                     <div class="modal-box">
                         <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                        <h3 class="font-bold text-lg mb-3">Product: {phone?.phone?.name} </h3>
+                        <h3 class="font-bold text-lg mb-3">Product: {name} </h3>
                         <form onSubmit={handleRestock} className="flex flex-col">
                             <p className='text-md mb-3'>Enter Quantity</p>
                             <input type="number" name='quantity' className='input input-bordered' />

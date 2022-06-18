@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 const Mobile = ({ mobile }) => {
     const navigate = useNavigate()
     const { _id, name, img, processor, price, display, camera, memory } = mobile

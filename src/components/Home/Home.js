@@ -10,6 +10,7 @@ import Reviews from './Reviews/Reviews';
 const Home = () => {
     return (
         <div>
+            {/* <Slides></Slides> */}
             <Carousel></Carousel>
             <FeaturedProducts></FeaturedProducts>
             <FeaturedCategory></FeaturedCategory>

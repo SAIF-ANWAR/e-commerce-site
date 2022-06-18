@@ -48,7 +48,7 @@ const Orders = ({ order, refetch }) => {
                     <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Quantity: {quantity}</li>
                     <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Delivery: {address}</li>
                     <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Total Cost: {totalCost}</li>
-                    <li class="w-full text-red-500 px-4 py-2 border-b border-gray-200 dark:border-gray-600">Status: {status ? status : "Pending"}</li>
+                    <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Status: {status}</li>
                 </ul>
                 <div class="card-actions justify-end py-2">
                     <button onClick={handleCancel} class="btn btn-sm">Cancel</button>

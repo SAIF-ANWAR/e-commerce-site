@@ -7,6 +7,8 @@ const LaptopInventory = ({ setLaptop }) => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
+
     const handleDelete = (id) => {
         fetch(`https://morning-sands-87879.herokuapp.com/laptops/${id}`, {
             method: "DELETE",
@@ -24,7 +26,7 @@ const LaptopInventory = ({ setLaptop }) => {
         <div className=' grid grid-cols-1 lg:grid-cols-3 gap-x-3 gap-y-3'>
             {
                 laptops.map(laptop => < div key={laptop._id}>
-                    <div class="card  card-compact bg-base-100 shadow-xl">
+                    <div class="card card-compact bg-base-100 shadow-xl">
                         <figure><img className='min-h-48 max-h-48' src={laptop?.img} alt="Shoes" /></figure>
                         <div class="card-body">
                             <ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">

@@ -47,7 +47,7 @@ const SignUp = () => {
                 }
             })
     };
-
+    console.log(user)
     return (
         <div>
             <h5 className="text-2xl font-medium text-center text-gray-900 dark:text-white mt-10">Create your account</h5>

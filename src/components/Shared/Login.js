@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from './Loading';
 import SocialLogin from './SocialLogin';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -18,23 +20,35 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
     const [gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    // const [user] = useAuthState(auth);
 
     if (loading || gLoading) {
         return <Loading></Loading>
+    }
+
+    // useEffect(() => {
+    //     if (user || gUser) {
+    //         navigate(from, { replace: true });
+    //     }
+    // }, [user, gUser, navigate, from])
+
+
+    if (user || gUser) {
+        navigate(from, { replace: true });
     }
     if (error || gError) {
 
         window.alert(`${error.message || gError.message}`)
     }
-    if (user || gUser) {
-        navigate(from, { replace: true });
-    }
+    // console.log(user)
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
-
+        // console.log(user)
 
     };
+
+
     return (
         <div>
             <h5 className="text-2xl font-medium text-center text-gray-900 dark:text-white mt-10">Sign in to our platform</h5>
