@@ -24,13 +24,14 @@ const SocialLogin = () => {
     }
     if (gUser) {
         navigate(from, { replace: true });
-
+        const email = gUser?.user?.email
+        const name = gUser?.user?.displayName
         const data = {
-            userName: gUser?.user?.displayName,
-            userEmail: gUser?.user?.email,
+            userName: name,
+            email: email,
         }
 
-        fetch(`https://morning-sands-87879.herokuapp.com/users/${gUser?.user?.email}`, {
+        fetch(`https://morning-sands-87879.herokuapp.com/user/registeredUser/${email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -42,7 +43,7 @@ const SocialLogin = () => {
                 console.log(data)
 
             })
-
+        // console.log(data)
     }
 
 

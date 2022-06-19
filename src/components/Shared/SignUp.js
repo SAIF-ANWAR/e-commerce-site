@@ -29,11 +29,14 @@ const SignUp = () => {
         if (updating) {
             return <Loading></Loading>
         }
+        const email = user?.email
+        const name = user?.name
         const data = {
-            userName: user?.name,
-            userEmail: user?.email,
+            userName: name,
+            email: email,
         }
-        fetch(`https://morning-sands-87879.herokuapp.com/users/${user?.email}`, {
+
+        fetch(`https://morning-sands-87879.herokuapp.com/user/registeredUser/${email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -47,7 +50,6 @@ const SignUp = () => {
                 }
             })
     };
-    console.log(user)
     return (
         <div>
             <h5 className="text-2xl font-medium text-center text-gray-900 dark:text-white mt-10">Create your account</h5>

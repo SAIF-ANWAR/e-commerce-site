@@ -23,7 +23,6 @@ const RestockLaptopQuantity = ({ laptop }) => {
                     window.alert("Update Successful")
                 }
             })
-        console.log(quantity)
     }
     return (
         <div>

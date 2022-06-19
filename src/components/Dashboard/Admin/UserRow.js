@@ -9,7 +9,7 @@ const UserRow = ({ user, refetch }) => {
         }
         const proceed = window.confirm("Are you sure")
         if (proceed) {
-            fetch(`https://morning-sands-87879.herokuapp.com/users/${email}`, {
+            fetch(`https://morning-sands-87879.herokuapp.com/user/registeredUser/${email}`, {
                 method: "PUT",
                 headers: {
                     'content-type': 'application/json'
